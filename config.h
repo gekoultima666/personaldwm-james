@@ -62,18 +62,25 @@ static const char *dolphincmd[]  = { "dolphin", NULL };
 static const char *katecmd[]  = { "kate", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *term2cmd[] = { "konsole", NULL };
+static const char *surfcmd[] = { "surf https:google.com", NULL };
+static const char *surf2cmd[] = { "surf https:duckduckgo.com", NULL };
+
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ Mod1Mask|ControlMask,         XK_t,      spawn,          {.v = term2cmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = dolphincmd } },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = katecmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefoxcmd } },
+	{ MODKEY|Mod1Mask|ControlMask,  XK_w,	     spawn,	         {.v = surfcmd } },
+	{ MODKEY|ControlMask, 		      XK_w,	     spawn,	         {.v = surf2cmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
+	{ Mod1Mask,                     XK_Tab,    focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_p,      incnmaster,     {.i = -1 } },
@@ -117,6 +124,8 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = term2cmd } },
+	{ ClkStatusText,        Mod1Mask,       Button1,        spawn,          {.v = dolphincmd } },
+	{ ClkStatusText,        MODKEY,         Button1,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
